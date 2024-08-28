@@ -1,0 +1,22 @@
+﻿{% extends 'layout.html' %}
+{% block title %}
+    Posts
+{% endblock %}
+{% block content %}
+    <section>
+        <h1>Posts List</h1>
+        {% for post in posts %}
+        	<article class="post">
+                <h2>
+                    <!-- This is the link to each individual post page created 
+                    with the slug of each stored slug -->
+                    <a href="{% url 'posts:page' slug=post.slug %}">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p> {{ post.date }} </p>
+                <p> {{ post.body }} </p>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

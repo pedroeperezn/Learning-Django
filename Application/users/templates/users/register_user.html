@@ -1,0 +1,16 @@
+﻿{% extends 'layout.html' %}
+{% block title %}
+    Register a New User
+{% endblock %}
+{% block content %}
+    <h1>Register a New User</h1>
+    <!-- Display my form as a form tag -->
+    <form class="form-with-validation" action="/users/register/" method="post">
+        <!-- CSRF validation: This is a built in security measure that Django uses to verify that the 
+         request is from a legit website -->
+        {% csrf_token %}
+        <!-- Display form and submit button -->
+        {{ form }}
+        <button class="form-submit">Submit</button>
+    </form>
+{% endblock %}
