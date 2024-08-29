@@ -14,13 +14,26 @@
 </head>
 <body>
     <nav>
-      <a href="/">Home</a>  |
-      <a href="/about">About</a> |
-      <a href="{% url 'posts:list' %}">News</a> |
-      <a href="{% url 'users:register_user' %}">Register</a> |
-      <a href="{% url 'users:login_user' %}">Log-in</a>
+        <a href="/">Home</a>  |
+        <a href="/about">About</a> |
+        <a href="{% url 'posts:list' %}">News</a> |
+        <!-- Display the new post and logout buttons if the user is authenticated -->
+        {% if user.is_authenticated %}
+            <a href="{% url 'posts:new-post' %}">New Post</a>
+            <!-- Logout form -->
+            <form class='logout' action="{% url 'users:logout_user' %}" method="post">
+                {% csrf_token %}
+                <button class="logout-button" aria-label="User Logout" title="User Logout">
+                    Log-out
+                </button>
+            </form>
+            <!-- Otherwise, show the register and login buttons -->
+        {% else %}
+            <a href="{% url 'users:register_user' %}">Register</a> |
+            <a href="{% url 'users:login_user' %}">Log-in</a>
+        {% endif %}
     </nav>
-    <main>
+<main>
         {% block content %}
         {% endblock %}
     </main>

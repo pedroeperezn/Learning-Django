@@ -12,6 +12,11 @@
         {% csrf_token %}
         <!-- Submit button for login -->
         {{ form }}
+        <!-- If the user tried to access previously the new post page
+        then it will redirect the user to the new post page after login -->
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}" />
+        {% endif %} 
         <button class="form-submit">Submit</button>
     </form>
 {% endblock %}
