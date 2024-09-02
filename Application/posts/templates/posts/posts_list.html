@@ -14,7 +14,8 @@
                         {{ post.title }}
                     </a>
                 </h2>
-                <p> {{ post.date }} </p>
+                <!-- Add author -->
+                <p> {{ post.date }} by {{ post.author }} </p>
                 <p> {{ post.body }} </p>
             </article>
         {% endfor %}

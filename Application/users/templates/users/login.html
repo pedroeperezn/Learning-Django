@@ -6,7 +6,7 @@
     <h1>User Login</h1>
     <!-- Display my form as a form tag -->
     <!-- The form is now a form to login users -->
-    <form class="form-with-validation" action="/users/login/" method="post">
+    <form class="form-with-validation" action="{% url 'users:login_user' %}" method="post">
         <!-- CSRF validation: This is a built in security measure that Django uses to verify that the 
          request is from a legit website -->
         {% csrf_token %}

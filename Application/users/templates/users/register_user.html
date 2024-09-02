@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Register a New User</h1>
     <!-- Display my form as a form tag -->
-    <form class="form-with-validation" action="/users/register/" method="post">
+    <form class="form-with-validation" action="{% url 'users:register_user' %}" method="post">
         <!-- CSRF validation: This is a built in security measure that Django uses to verify that the 
          request is from a legit website -->
         {% csrf_token %}

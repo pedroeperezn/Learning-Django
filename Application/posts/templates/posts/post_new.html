@@ -5,5 +5,15 @@
 {% block content %}
     <section>
         <h1>New Post</h1>
+        <!-- This is the form for the new post. 
+        In this form, we are using our new post action alongside with an enctype that allows 
+        images so that we can populate our whole post within the form-->
+        <form class='form-with-validation' action="{% url 'posts:new-post' %}" method="post" enctype="multipart/form-data">
+            <!--Here we are presenting our form. First we add our cstf validation, then we display
+            the form, and then we add a submit button for adding the post. -->
+            {% csrf_token %}
+            {{ form }}
+            <button class="form-submit"> Add Post </button>
+        </form>
     </section>
 {% endblock %}
