@@ -1,0 +1,71 @@
+﻿<!DOCTYPE HTML>
+{% load static %}
+<html>
+<head>
+    <title>
+        {% block title %}
+        The Blogging App
+        {% endblock %}
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'new_css/main.css' %}" />
+</head>
+<body class="homepage is-preload">
+<div id="page-wrapper">
+    <!-- Header -->
+    <section id="header">
+    <nav id="nav">
+        <ul>
+            <li><a class="icon solid fa-home" href="/"><span>Home</span></a></li>
+            <li><a class="icon solid fa-home" href="/about"><span>About</span></a></li>
+            <!-- Display the new post and logout buttons if the user is authenticated -->
+            {% if user.is_authenticated %}
+                <li><a class="icon solid fa-home"href="{% url 'posts:new-post' %}">New Post</a></li>
+                <!-- Logout form -->
+                <form class='logout' action="{% url 'users:logout_user' %}" method="post">
+                    {% csrf_token %}
+                    <button class="logout-button" aria-label="User Logout" title="User Logout">
+                        Log-out
+                    </button>
+                </form>
+                <!-- Otherwise, show the register and login buttons -->
+            {% else %}
+                <a href="{% url 'users:register_user' %}">Register</a> |
+                <a href="{% url 'users:login_user' %}">Log-in</a>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="container">
+    {% block header_content %}
+        <!-- Logo -->
+        <h1 id="logo">Welcome!</h1>
+        <p>This is my first Django Application. Please sign up to create a new post. You can also browse posts done by
+            other users. Special thanks to Dave Gray, whose excellent tutorials helped me understand the basic concepts of
+            back-end web development with Python and Django. Also thanks to HTML5UP for providing the HTML template in which
+            I based the contents of my application.</p>
+    {% endblock %}
+    </div>
+    </section>
+    <!-- Main -->
+    <section id="main">
+        <div class="container">
+            <div id="content" class="col-8 col-12-medium">
+                <article class="box post">
+                {% block content %}
+    
+                {% endblock %}
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Scripts -->
+<script src="{% static 'new_js/jquery.min.js'%}"></script>
+<script src="{% static 'new_js/jquery.dropotron.min.js'%}"></script>
+<script src="{% static 'new_js/browser.min.js'%}"></script>
+<script src="{% static 'new_js/breakpoints.min.js'%}"></script>
+<script src="{% static 'new_js/util.js'%}"></script>
+<script src="{% static 'new_js/main.js'%}"></script>
+</body>
+</html>
